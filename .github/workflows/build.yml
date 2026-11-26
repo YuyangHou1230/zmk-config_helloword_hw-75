@@ -57,6 +57,8 @@ jobs:
           west update
           west zephyr-export
           pip install --break-system-packages -r zephyr/scripts/requirements.txt
+          # nanopb 0.4.6 needs RegisterExtension, removed in protobuf >= 4.22
+          pip install --break-system-packages --no-deps "protobuf==4.21.12"
           git config --global --add safe.directory $PWD
 
       - name: West build
